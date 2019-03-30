@@ -12,11 +12,11 @@ export default class Tasks extends Component {
         super(props);
         this.state = {
             tasks: [
-                { id: 1, title: 'Sacar la basura', completed: true },
-                { id: 2, title: 'Paga colegiatura', completed: false },
-                { id: 3, title: 'Comprar cervezas', completed: false },
-                { id: 4, title: 'Sacar al perro', completed: false },
-                { id: 5, title: 'Comprar croquetas', completed: false }
+                { id: 1, title: 'Sacar la basura', completed: true, date: 1518449400000 },
+                { id: 2, title: 'Paga colegiatura', completed: false, date: 1518362400000 },
+                { id: 3, title: 'Comprar cervezas', completed: false, date: 1514995200000 },
+                { id: 4, title: 'Sacar al perro', completed: false, date: 1512925200000 },
+                { id: 5, title: 'Comprar croquetas', completed: false, date: 1512147600000 }
             ],
             showAddTaskModal: false
         }
