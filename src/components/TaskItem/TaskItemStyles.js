@@ -4,7 +4,6 @@ export default styles = {
   container: {
     height: 60,
     width: '90%',
-    //borderColor: colors.separator,
     borderWidth: 0,
     padding: 10,
     alignItems: 'center',
@@ -13,12 +12,11 @@ export default styles = {
     justifyContent: "space-between",
     marginTop: 13,
     marginLeft: 13,
-    backgroundColor: '#FFF'
+    backgroundColor: colors.containerUnchecked
   },
   containerChecked:{
       height: 60,
       width: '90%',
-      //borderColor: colors.separator,
       borderWidth: 0,
       padding: 10,
       alignItems: 'center',
@@ -27,7 +25,7 @@ export default styles = {
       justifyContent: "space-between",
       marginTop: 13,
       marginLeft: 13,
-      backgroundColor: '#F8F8F8'
+      backgroundColor: colors.containerChecked
   },
   date: {
     width: 50,
@@ -45,17 +43,17 @@ export default styles = {
     fontFamily: 'notoserif',
     fontWeight: '300',
     textAlign: 'center',
-    color: colors.dateColorChecked,
-    borderColor: colors.dateColorChecked,
+    color: colors.tasktChecked,
+    borderColor: colors.tasktChecked,
     borderRightWidth: 1
   },
-  title: {
+  unchecked: {
     width: 339,
     fontSize: 14,
     fontFamily: 'sans-serif',
     fontWeight: '300',
     textAlign: 'left',
-    color: colors.dateColor,
+    color: colors.primaryText,
     paddingLeft: 5
     
   },
@@ -65,7 +63,7 @@ export default styles = {
     fontFamily: 'notoserif',
     fontWeight: '300',
     textAlign: 'left',
-    color: colors.dateColorChecked,
+    color: colors.tasktChecked,
     paddingLeft: 5
   }
 }

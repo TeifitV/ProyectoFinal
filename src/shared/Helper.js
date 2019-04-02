@@ -2,7 +2,7 @@ import constants from './Constants';
 
 export default class Helper{
 
-  formatDate(date, renderHoursAndMinutes = true){
+  formatDate(date, renderHoursAndMinutes = false){
     let hoursAndMinutesString = '';
     const targetDate = new Date(date),
           month = constants.months[targetDate.getMonth()],

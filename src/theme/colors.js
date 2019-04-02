@@ -7,7 +7,8 @@ export default colors = {
   separator: 'rgb(231,231,231)',
   touchableHover: 'rgba(0,0,0,.05)',
   primaryText: 'rgb(29,29,38)',
-  dateColor: '#ED184A',
-  dateColorChecked: '#A4A4A4',
-  tasktChecked: '#D3D3D3',
+  dateColor: 'rgb(237,24,74)',
+  tasktChecked: 'rgb(164,164,164)',
+  containerChecked: 'rgb(248,248,248)',
+  containerUnchecked: 'rgb(255,255,255)'
 }
