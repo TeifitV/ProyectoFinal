@@ -83,7 +83,7 @@ export default styles = {
     fontFamily: 'notoserif',
     fontWeight: '300',
     textAlign: 'left',
-    color: colors.tasktChecked,
+    color: colors.gray,
     paddingLeft: 5
   }
 }
