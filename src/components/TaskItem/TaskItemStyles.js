@@ -29,7 +29,7 @@ export default styles = {
   },
   dayUnchecked: {
     width: 50,
-    fontSize: 14,
+    fontSize: 16,
     fontFamily: 'sans-serif',
     fontWeight: '300',
     textAlign: 'center',
@@ -39,7 +39,7 @@ export default styles = {
   },
   dayChecked:{
     width: 50,
-    fontSize: 14,
+    fontSize: 16,
     fontFamily: 'notoserif',
     fontWeight: '300',
     textAlign: 'center',
