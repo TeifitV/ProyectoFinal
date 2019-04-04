@@ -12,7 +12,7 @@ export default styles = {
     justifyContent: "space-between",
     marginTop: 13,
     marginLeft: 13,
-    backgroundColor: colors.containerUnchecked
+    backgroundColor: colors.white
   },
   containerChecked:{
       height: 60,
@@ -27,24 +27,44 @@ export default styles = {
       marginLeft: 13,
       backgroundColor: colors.containerChecked
   },
-  date: {
+  dayUnchecked: {
     width: 50,
     fontSize: 14,
     fontFamily: 'sans-serif',
     fontWeight: '300',
     textAlign: 'center',
-    color: colors.dateColor,
-    borderColor: colors.dateColor,
+    color: colors.primaryColorDarker,
+    borderColor: colors.primaryColorDarker,
     borderRightWidth: 1
   },
-  dateChecked:{
+  dayChecked:{
     width: 50,
     fontSize: 14,
     fontFamily: 'notoserif',
     fontWeight: '300',
     textAlign: 'center',
-    color: colors.tasktChecked,
-    borderColor: colors.tasktChecked,
+    color: colors.gray,
+    borderColor: colors.gray,
+    borderRightWidth: 1
+  },
+  monthUnchecked:{
+    width: 50,
+    fontSize: 18,
+    fontFamily: 'sans-serif',
+    fontWeight: '100',
+    textAlign: 'center',
+    color: colors.primaryColorDarker,
+    borderColor: colors.primaryColorDarker,
+    borderRightWidth: 1
+  },
+  monthChecked:{
+    width: 50,
+    fontSize: 18,
+    fontFamily: 'notoserif',
+    fontWeight: '100',
+    textAlign: 'center',
+    color: colors.gray,
+    borderColor: colors.gray,
     borderRightWidth: 1
   },
   unchecked: {

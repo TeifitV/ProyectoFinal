@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, Image, Text } from 'react-native';
+import { TouchableOpacity, View, Text } from 'react-native';
 import styles from './TaskItemStyles';
-import Helper from './../../shared/Helper';
+
 
 
 export default class TaskItem extends Component {
@@ -9,14 +9,22 @@ export default class TaskItem extends Component {
   render(){
     const { id, title, completed, onUpdateTask, date } = this.props;
     const styleText = completed ? styles.checked : styles.unchecked;
-    const styleDate = completed ? styles.dateChecked : styles.date;
+    const styleDate = completed ? styles.dayChecked : styles.dayUnchecked;
+    const styleMonth = completed ? styles.monthChecked : styles.monthUnchecked;
     const styleContainer = completed ? styles.containerChecked : styles.container;
 
-    const helper = new Helper();
+    const taskDate = new Object(new Date(date));
+    const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC' ];
+
+    const monthText = months[taskDate.getMonth()];
+    const dayText = taskDate.getDate();
     
     return (
       <TouchableOpacity style={styleContainer} onPress={ () => onUpdateTask(id) } >
-        <Text style = {styleDate}> {helper.formatDate(date)} </Text> 
+        <View>
+          <Text style = {styleDate}> {dayText} </Text> 
+          <Text style = {styleMonth}> {monthText} </Text>
+        </View>
         <Text style={styleText}>{title}</Text>
       </TouchableOpacity>
     )
