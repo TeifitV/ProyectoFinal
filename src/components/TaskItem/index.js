@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, View, Text } from 'react-native';
 import styles from './TaskItemStyles';
+import constants from './../../shared/Constants'
 
 
 
@@ -14,9 +15,9 @@ export default class TaskItem extends Component {
     const styleContainer = completed ? styles.containerChecked : styles.container;
 
     const taskDate = new Object(new Date(date));
-    const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC' ];
+    
 
-    const monthText = months[taskDate.getMonth()];
+    const monthText = constants.months[taskDate.getMonth()];
     const dayText = taskDate.getDate();
     
     return (
