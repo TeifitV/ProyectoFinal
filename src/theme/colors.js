@@ -6,5 +6,6 @@ export default colors = {
   gray: 'rgb(164, 164, 164)',
   separator: 'rgb(231,231,231)',
   touchableHover: 'rgba(0,0,0,.05)',
-  primaryText: 'rgb(29,29,38)'
+  primaryText: 'rgb(29,29,38)',
+  containerChecked: 'rgb(248,248,248)'
 }

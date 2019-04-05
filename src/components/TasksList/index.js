@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ScrollView } from 'react-native';
 import TaskItem from './../TaskItem';
+import styles from './tasksListStyle'
 
 export default class TasksList extends Component {
 
@@ -14,6 +15,7 @@ export default class TasksList extends Component {
           title={task.title}
           completed={task.completed}
           onUpdateTask={onUpdateTask}
+          date={task.date}
         />
       )
     })
@@ -21,7 +23,7 @@ export default class TasksList extends Component {
 
   render(){
     return(
-      <ScrollView>
+      <ScrollView contentContainerStyle={styles.container}>
         { this.renderTasks() }
       </ScrollView>
     )
