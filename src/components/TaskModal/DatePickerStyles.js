@@ -1,4 +1,5 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet,Platform} from 'react-native';
+import Colors from './../../theme/colors';
 
 const styles = StyleSheet.create({
       modalContainer: {
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
         color: Colors.white,
         fontSize: 30,
         textAlign: 'center'
-       
+
       },
       bodyContainer: {
         flex: 1,
@@ -81,16 +82,18 @@ const styles = StyleSheet.create({
       }
   });
 
-  const datePickerStyles from StyleSheet.create({
-      dateIcon: {
-        position: 'center',
-        left: 0,
-        top: 4,
-        marginLeft: 0
-      },
-      dateInput: {
-        borderColor:'transparent',
-        marginLeft: 0
-      }
-    });
+const datePickerStyles = StyleSheet.create({
+    dateIcon: {
+      left: 0,
+      top: 4,
+      marginLeft: 0
+    },
+    dateInput: {
+      borderColor:'transparent',
+      marginLeft: 0
+    }
+  });
 export default styles;
+
+
+export {datePickerStyles};
