@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View , TouchableOpacity, StyleSheet, Text, Modal, Image } from 'react-native';
+import { View , TouchableOpacity, StyleSheet, Text, Modal, Image ,category} from 'react-native';
 import styles from './TasksStyles';
 import TaskHeader from './../../components/TaskHeader';
 import TasksList from './../../components/TasksList';
@@ -18,6 +18,7 @@ export default class Tasks extends Component {
                 { id: 4, title: 'Sacar al perro', completed: false },
                 { id: 5, title: 'Comprar croquetas', completed: false }
             ],
+            category: this.props.navigation.getParam(category,"work"),
             showAddTaskModal: false
         }
     }
@@ -46,14 +47,27 @@ export default class Tasks extends Component {
         this.setState({tasks: tasksList});
     }
 
+    componentDidMount(){
+        const self = this;
+        const {category} = this.state;
+        const API_BASE_URL= 'https://remindmeapi.jaycorpstudios.now.sh/tasks/'; 
+        fetch(API_BASE_URL + category)
+            .then( data => data.json())
+            .then( data => {
+            const {tasks=[]} = data;
+            self.setState({tasks});
+        })
+    }
+
     render(){
         const { tasks = [], showAddTaskModal=false } = this.state;
+        const {category} = this.state;
         return(
             <View style={styles.container}>
-                <TaskHeader tasks={tasks} />
+                <TaskHeader task ={tasks} category={category}  />
                 <TasksList tasks={tasks} onUpdateTask={this.updateTask.bind(this)}/>
                 <Modal
-                    visible={showAddTaskModal}
+                    visible={showAddTaskModal} 
                     transparent={true}
                     animationType={'slide'}
                     onRequestClose={this.closeAddTaskModal.bind(this)}>
@@ -63,6 +77,7 @@ export default class Tasks extends Component {
                     />
                 </Modal>
                 <AddTaskButton openAddTaskModal={this.openAddTaskModal.bind(this)}/>
+                
             </View>
         )
     }

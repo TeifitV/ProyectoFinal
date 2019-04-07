@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     date: {
         color: '#C0C0C0',
         fontSize: 16,
+        textAlign: 'center'
     }
 });
 
