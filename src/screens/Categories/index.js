@@ -1,48 +1,66 @@
 import React, {Component} from 'react';
 import {View, Image, Text, ImageBackground, TouchableOpacity } from 'react-native';
 import styles from './CategoriesStyles';
+import CategoryItem from './../../components/CategoryItem';
 
 export default class Categories extends Component {
+  constructor(props){
+        super(props);
+        this.state = {
+            categories: [
+                { id: 1, title: 'TRABAJO',img: require('./../../images/category-work.png')},
+                { id: 2, title: 'ESCUELA',img: require('./../../images/category-school.png')},
+                { id: 3, title: 'HOGAR',img: require('./../../images/category-home.png')},
+                { id: 4, title: 'AMIGOS',img: require('./../../images/category-friends.png')}
+            ],
+        }
+    }
 
-  goToTask(){
-   this.props.navigation.navigate('Tasks');
+     renderCat() {
+    const {categories} = this.state;
+    return categories.map(category => {
+      return (
+        <CategoryItem
+          key={category.id}
+          id={category.id}
+          title={category.title}
+          img={category.img}
+          goToTask ={this.goToTask.bind(this)}
+        />
+      )
+    })
   }
 
-  render() {
-    return (
-      <View style={styles.container}>
+  goToTask(){
+
+      this.props.navigation.navigate('Tasks');
+  }
+
+  render(){
+    return(
+
+       <View style={styles.container}>
 
         <ImageBackground style={styles.baseCopy} source={ require('./../../images/pattern.png') }>
            <Image style={styles.logo} source={ require('./../../images/remindMe-lLogo.png') }></Image>
 
             <View style={styles.table}>
-              <TouchableOpacity style={styles.rectangle} onPress={ this.goToTask.bind(this) }>
-                <Image style={styles.categoryIcon} source={ require('./../../images/category-work.png') }></Image>
-                <Text style={styles.categoria}>TRABAJO</Text>
-              </TouchableOpacity>
+             { this.renderCat() }
 
 
-              <TouchableOpacity style={styles.rectangle} onPress={ this.goToTask.bind(this) }>
-                <Image style={styles.categoryIcon} source={ require('./../../images/category-school.png') }></Image>
-                <Text style={styles.categoria}>ESCUELA</Text>
-              </TouchableOpacity>
-
-
-              <TouchableOpacity style={styles.rectangle} onPress={ this.goToTask.bind(this) }>
-                 <Image style={styles.categoryIcon}  source={ require('./../../images/category-home.png') }></Image>
-                 <Text style={styles.categoria}>HOGAR</Text>
-              </TouchableOpacity>
-
-
-              <TouchableOpacity style={styles.rectangle} onPress={ this.goToTask.bind(this) }>
-                <Image style={styles.categoryIcon} source={ require('./../../images/category-friends.png') }></Image>
-                <Text style={styles.categoria}>AMIGOS</Text>
-              </TouchableOpacity>
            </View>
-
-          
         </ImageBackground>
       </View>
+
+
+
     );
   }
+
 }
+
+
+
+
+
+
