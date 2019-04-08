@@ -18,7 +18,7 @@ export default class Tasks extends Component {
                 { id: 4, title: 'Sacar al perro', completed: false },
                 { id: 5, title: 'Comprar croquetas', completed: false }
             ],
-            category: this.props.navigation.getParam(category,"work"),
+            category: this.props.navigation.getParam(category,"Party"),
             showAddTaskModal: false
         }
     }
@@ -58,13 +58,13 @@ export default class Tasks extends Component {
             self.setState({tasks});
         })
     }
-
+ 
     render(){
         const { tasks = [], showAddTaskModal=false } = this.state;
         const {category} = this.state;
         return(
             <View style={styles.container}>
-                <TaskHeader task ={tasks} category={category}  />
+                <TaskHeader  category={category} tasks ={tasks} />
                 <TasksList tasks={tasks} onUpdateTask={this.updateTask.bind(this)}/>
                 <Modal
                     visible={showAddTaskModal} 
