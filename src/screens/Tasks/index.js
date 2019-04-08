@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
-import { View , TouchableOpacity, StyleSheet, Text, Modal, Image ,category} from 'react-native';
+import {category} from 'react';
+//import constantes from '../../constantes';
+import { View , TouchableOpacity, StyleSheet, Text, Modal, Image} from 'react-native';
 import styles from './TasksStyles';
 import TaskHeader from './../../components/TaskHeader';
 import TasksList from './../../components/TasksList';
 import TaskModal from '../../components/TaskModal';
 import AddTaskButton from '../../components/AddTaskButton';
 
-export default class Tasks extends Component {
+export default class Tasks extends Component { 
 
     constructor(props){
         super(props);
@@ -18,7 +20,7 @@ export default class Tasks extends Component {
                 { id: 4, title: 'Sacar al perro', completed: false },
                 { id: 5, title: 'Comprar croquetas', completed: false }
             ],
-            category: this.props.navigation.getParam(category,"Party"),
+            category: this.props.navigation.getParam(category,'school'),
             showAddTaskModal: false
         }
     }
@@ -44,12 +46,14 @@ export default class Tasks extends Component {
                         ? {...task, completed: !task.completed }
                         : {...task}
         });
-        this.setState({tasks: tasksList});
+        this.state = {
+            task:[],
+        };
     }
 
     componentDidMount(){
         const self = this;
-        const {category} = this.state;
+        const {category} = this.state; 
         const API_BASE_URL= 'https://remindmeapi.jaycorpstudios.now.sh/tasks/'; 
         fetch(API_BASE_URL + category)
             .then( data => data.json())
