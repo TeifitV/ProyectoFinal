@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {category} from 'react';
-//import constantes from '../../constantes';
+import { API_BASE_URL } from './../../shared/Config';
 import { View , TouchableOpacity, StyleSheet, Text, Modal, Image} from 'react-native';
 import styles from './TasksStyles';
 import TaskHeader from './../../components/TaskHeader';
@@ -54,8 +54,8 @@ export default class Tasks extends Component {
     componentDidMount(){
         const self = this;
         const {category} = this.state; 
-        const API_BASE_URL= 'https://remindmeapi.jaycorpstudios.now.sh/tasks/'; 
-        fetch(API_BASE_URL + category)
+        const path = `${API_BASE_URL}/tasks/`;
+        fetch(path + category)
             .then( data => data.json())
             .then( data => {
             const {tasks=[]} = data;
