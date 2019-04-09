@@ -20,6 +20,7 @@ class TaskHeader extends Component {
                 <ImageBackground source={ require('./../../../assets/pattern.png') } style={styles.background} >
                     
                     <View>
+
                     <Text style={styles.toDo}>{category}</Text>
                         <Text style={styles.toDo}>{this.getUncompletedTasks()} Pendientes</Text>
                         <Text style={styles.date}>{this.getParseDate()}</Text>

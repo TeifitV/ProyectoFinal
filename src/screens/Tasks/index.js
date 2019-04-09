@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {category} from 'react';
 import { API_BASE_URL } from './../../shared/Config';
 import { View , TouchableOpacity, StyleSheet, Text, Modal, Image} from 'react-native';
 import styles from './TasksStyles';
@@ -10,17 +9,11 @@ import AddTaskButton from '../../components/AddTaskButton';
 
 export default class Tasks extends Component { 
 
+    
     constructor(props){
         super(props);
         this.state = {
-            tasks: [
-                { id: 1, title: 'Sacar la basura', completed: true },
-                { id: 2, title: 'Paga colegiatura', completed: false },
-                { id: 3, title: 'Comprar cervezas', completed: false },
-                { id: 4, title: 'Sacar al perro', completed: false },
-                { id: 5, title: 'Comprar croquetas', completed: false }
-            ],
-            category: this.props.navigation.getParam(category,'school'),
+            tasks: [],
             showAddTaskModal: false
         }
     }
@@ -46,14 +39,12 @@ export default class Tasks extends Component {
                         ? {...task, completed: !task.completed }
                         : {...task}
         });
-        this.state = {
-            task:[],
-        };
+        this.setState({tasks: tasksList});
     }
 
     componentDidMount(){
         const self = this;
-        const {category} = this.state; 
+        const category = this.props.navigation.getParam(category,'work');
         const path = `${API_BASE_URL}/tasks/`;
         fetch(path + category)
             .then( data => data.json())
@@ -65,7 +56,7 @@ export default class Tasks extends Component {
  
     render(){
         const { tasks = [], showAddTaskModal=false } = this.state;
-        const {category} = this.state;
+        const category = this.props.navigation.getParam(category,'work');
         return(
             <View style={styles.container}>
                 <TaskHeader  category={category} tasks ={tasks} />
