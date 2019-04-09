@@ -1,3 +1,5 @@
+
+
 import React,{ Component } from 'react';
 import {
   View,
@@ -5,17 +7,21 @@ import {
   Text,
   TextInput,
   TouchableHighlight,
+  ImageBackground,
   StyleSheet,
   Platform
 } from 'react-native';
 
 import Colors from './../../theme/colors';
-
+import DatePicker from 'react-native-datepicker';
+import styles, {datePickerStyles} from './DatePickerStyles.js';
 export default class TaskModal extends Component{
   constructor(props){
     super(props)
+    currentDate=new Date()
     this.state={
-      taskText:''
+      taskText:'',
+      date: currentDate
     }
   }
 
@@ -26,23 +32,34 @@ export default class TaskModal extends Component{
       //TODO: show an alert to the user!
     }
   }
-  
-  render() {
 
+  render() {
     return (
-      <View style={styles.modalContainer}>
+     <View style={styles.modalContainer}>
         <View style={styles.wrapperContainer}>
-          <View style={styles.headerContainer}>
-            <Image
-              style={styles.remindMeLogo}
-              source={require('./../../images/remindMe-lLogo.png')}/>
-          </View>
+          <ImageBackground source={require('./../../images/pattern.png')}  style={styles.headerContainer}>
+            <Text style={styles.headerText}>AGREGAR TAREA</Text >
+              </ImageBackground>
           <View style={styles.bodyContainer}>
-              <Text style={styles.addTaskText}>Agregar Tarea</Text>
+              <Text style={styles.addTaskText}></Text>
               <TextInput
                 style={styles.inputText}
-                placeholder="Nombre de la tarea"
+                placeholder="Agregar Tarea"
                 onChangeText={ (text) => this.setState({taskText: text}) }/>
+               <DatePicker
+                style={{width: 300}}
+                date={this.state.date}
+                mode="date"
+                format="DD-MMM-YYYY"
+                androidMode="spinner"
+                confirmBtnText="Confirm"
+                cancelBtnText="Cancel"
+                showIcon={false}
+                customStyles={
+                  datePickerStyles
+                }
+                onDateChange={(date) => {this.setState({date: date})}}
+              />
               <TouchableHighlight
                 style={styles.addButton}
                 underlayColor={Colors.touchableHover}
@@ -62,80 +79,4 @@ export default class TaskModal extends Component{
       </View>
     );
   }
-
 }
-
-// TODO: Create Theme styles (Buttons, Global Components, etc) so it can be imported on each component as required.
-const styles = StyleSheet.create({
-  modalContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(0,0,0,.5)'
-  },
-  wrapperContainer: {
-    backgroundColor: 'white',
-    height: 567
-  },
-  headerContainer:{
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: Colors.primaryColorDarker
-  },
-  remindMeLogo:{
-    width: 285,
-  },
-  bodyContainer: {
-    flex: 1,
-    height: 315,
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    padding: 20
-  },
-  addTaskText: {
-    fontFamily: 'Avenir',
-    fontSize: 16,
-    textAlign: 'center'
-  },
-  inputText:{
-    width: 300,
-    fontFamily: 'Avenir',
-    fontSize: 30,
-    textAlign: 'center',
-    borderBottomWidth: Platform.OS === 'ios' ? 2 : 0,
-    borderBottomColor: Colors.separator
-  },
-  addButton: {
-      width: 325,
-      height: 55,
-      paddingTop: 15,
-      borderRadius: 27,
-      borderStyle: 'solid',
-      borderWidth: 2,
-      backgroundColor: Colors.primaryColorDarker,
-      borderColor: Colors.primaryColorDarker
-  },
-  addButtonText: {
-    fontFamily: 'Avenir',
-    textAlign: 'center',
-    fontSize: 17,
-    color: 'white'
-  },
-  cancelButton: {
-      width: 325,
-      height: 55,
-      paddingTop: 15,
-      borderRadius: 27,
-      borderStyle: 'solid',
-      borderWidth: 2,
-      backgroundColor: 'white',
-      borderColor: Colors.primaryColorDarker
-  },
-  cancelButtonText: {
-    fontFamily: 'Avenir',
-    textAlign: 'center',
-    fontSize: 17,
-    color: Colors.primaryColorDarker
-  }
-});
