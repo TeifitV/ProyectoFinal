@@ -27,7 +27,7 @@ export default class TaskModal extends Component{
 
   addTask(){
     if(this.state.taskText !== ''){
-      this.props.addTask(this.state.taskText);
+      this.props.addTask(this.state.taskText,this.state.date);
     }else{
       //TODO: show an alert to the user!
     }
