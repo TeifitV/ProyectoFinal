@@ -8,55 +8,45 @@ export default class Categories extends Component {
         super(props);
         this.state = {
             categories: [
-                { id: 1, title: 'TRABAJO',img: require('./../../images/category-work.png')},
-                { id: 2, title: 'ESCUELA',img: require('./../../images/category-school.png')},
-                { id: 3, title: 'HOGAR',img: require('./../../images/category-home.png')},
-                { id: 4, title: 'AMIGOS',img: require('./../../images/category-friends.png')}
+                { id: 1, title: 'TRABAJO',category:'work'},
+                { id: 2, title: 'ESCUELA',category: 'school'},
+                { id: 3, title: 'HOGAR',category: 'home'},
+                { id: 4, title: 'AMIGOS',category: 'friends'}
             ],
         }
     }
 
-     renderCat() {
+  renderCat() {
     const {categories} = this.state;
     return categories.map(category => {
       return (
         <CategoryItem
-          key={category.id}
-          id={category.id}
           title={category.title}
-          img={category.img}
+          category={category.category}
           goToTask ={this.goToTask.bind(this)}
         />
       )
     })
   }
 
-  goToTask(){
-
-      this.props.navigation.navigate('Tasks');
+  goToTask(category){
+      this.props.navigation.navigate('Tasks', {category} );
   }
 
   render(){
     return(
-
-       <View style={styles.container}>
-
+      <View style={styles.container}>
         <ImageBackground style={styles.baseCopy} source={ require('./../../images/pattern.png') }>
-           <Image style={styles.logo} source={ require('./../../images/remindMe-lLogo.png') }></Image>
-
-            <View style={styles.table}>
-             { this.renderCat() }
-
-
-           </View>
+        <Image style={styles.logo} source={ require('./../../images/remindMe-lLogo.png') }></Image>
+        <View>
+          
+          <View style={styles.table}>{ this.renderCat() }</View>
+        </View>
         </ImageBackground>
-      </View>
-
-
-
+    </View>
+      
     );
   }
-
 }
 
 

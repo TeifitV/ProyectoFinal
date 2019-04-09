@@ -1,7 +1,6 @@
 import {StyleSheet} from 'react-native';
 import Colors from './../../theme/colors';
 const styles = StyleSheet.create({
-	
      rectangle: {
       height: '40%',
       width: '45%',
@@ -9,12 +8,11 @@ const styles = StyleSheet.create({
       backgroundColor: Colors.white,
       alignItems: 'center',
       marginBottom: 30,
-
     },
      categoria: {
       height: 32,
       width: 92,
-      color: '#5C5C5C',
+      color: Colors.primaryText,
       fontSize: 15,
       letterSpacing: 0.33,
       lineHeight: 27,
@@ -24,6 +22,5 @@ const styles = StyleSheet.create({
       height: '80%',
       width: '80%',
     }
-
 });
 export default styles;
