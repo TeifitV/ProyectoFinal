@@ -7,9 +7,9 @@ import TasksList from './../../components/TasksList';
 import TaskModal from '../../components/TaskModal';
 import AddTaskButton from '../../components/AddTaskButton';
 
-export default class Tasks extends Component { 
+export default class Tasks extends Component {
 
-    
+
     constructor(props){
         super(props);
         this.state = {
@@ -26,8 +26,8 @@ export default class Tasks extends Component {
         this.setState({showAddTaskModal: false});
     }
 
-    addTask(text){
-        const newTask = { title: text, completed: false, id: this.state.tasks.length + 1 };
+    addTask(text,date){
+        const newTask = { title: text, completed: false, id: this.state.tasks.length + 1, date: date.getTime() };
         this.setState({ tasks: [newTask, ...this.state.tasks] });
         this.closeAddTaskModal();
     }
@@ -53,7 +53,7 @@ export default class Tasks extends Component {
             self.setState({tasks});
         })
     }
- 
+
     render(){
         const { tasks = [], showAddTaskModal=false } = this.state;
         const category = this.props.navigation.getParam(category,'work');
@@ -62,7 +62,7 @@ export default class Tasks extends Component {
                 <TaskHeader  category={category} tasks ={tasks} />
                 <TasksList tasks={tasks} onUpdateTask={this.updateTask.bind(this)}/>
                 <Modal
-                    visible={showAddTaskModal} 
+                    visible={showAddTaskModal}
                     transparent={true}
                     animationType={'slide'}
                     onRequestClose={this.closeAddTaskModal.bind(this)}>
@@ -72,7 +72,7 @@ export default class Tasks extends Component {
                     />
                 </Modal>
                 <AddTaskButton openAddTaskModal={this.openAddTaskModal.bind(this)}/>
-                
+
             </View>
         )
     }
