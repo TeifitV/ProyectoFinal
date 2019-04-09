@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {View, ImageBackground, Image, Text } from 'react-native';
+import {View, ImageBackground, Text } from 'react-native';
 import styles from './TasksStyles';
-import { calculateUncompletedTasks, getParseDate } from './tasksUtils';
+import { calculateUncompletedTasks, getParseDate} from './tasksUtils';
 
 class TaskHeader extends Component {
 
@@ -14,11 +14,14 @@ class TaskHeader extends Component {
     }
 
     render(){
+        const {category} = this.props;
         return(
             <View style={styles.container}>
-                <ImageBackground source={ require('./../../images/tasks-bg.jpg') } style={styles.background} blurRadius={15}>
-                    <Image source={ require('./../../images/user-avatar.png') } style={styles.avatar}></Image>
+                <ImageBackground source={ require('./../../../assets/pattern.png') } style={styles.background} >
+                    
                     <View>
+
+                    <Text style={styles.toDo}>{category}</Text>
                         <Text style={styles.toDo}>{this.getUncompletedTasks()} Pendientes</Text>
                         <Text style={styles.date}>{this.getParseDate()}</Text>
                     </View>

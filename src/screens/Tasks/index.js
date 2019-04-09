@@ -1,23 +1,19 @@
 import React, {Component} from 'react';
-import { View , TouchableOpacity, StyleSheet, Text, Modal, Image } from 'react-native';
+import { API_BASE_URL } from './../../shared/Config';
+import { View , TouchableOpacity, StyleSheet, Text, Modal, Image} from 'react-native';
 import styles from './TasksStyles';
 import TaskHeader from './../../components/TaskHeader';
 import TasksList from './../../components/TasksList';
 import TaskModal from '../../components/TaskModal';
 import AddTaskButton from '../../components/AddTaskButton';
 
-export default class Tasks extends Component {
+export default class Tasks extends Component { 
 
+    
     constructor(props){
         super(props);
         this.state = {
-            tasks: [
-                { id: 1, title: 'Sacar la basura', completed: true, date: 1518449400000 },
-                { id: 2, title: 'Paga colegiatura', completed: false, date: 1518362400000 },
-                { id: 3, title: 'Comprar cervezas', completed: false, date: 1514995200000 },
-                { id: 4, title: 'Sacar al perro', completed: false, date: 1512925200000 },
-                { id: 5, title: 'Comprar croquetas', completed: false, date: 1512147600000 }
-            ],
+            tasks: [],
             showAddTaskModal: false
         }
     }
@@ -46,14 +42,27 @@ export default class Tasks extends Component {
         this.setState({tasks: tasksList});
     }
 
+    componentDidMount(){
+        const self = this;
+        const category = this.props.navigation.getParam(category,'work');
+        const path = `${API_BASE_URL}/tasks/`;
+        fetch(path + category)
+            .then( data => data.json())
+            .then( data => {
+            const {tasks=[]} = data;
+            self.setState({tasks});
+        })
+    }
+ 
     render(){
         const { tasks = [], showAddTaskModal=false } = this.state;
+        const category = this.props.navigation.getParam(category,'work');
         return(
             <View style={styles.container}>
-                <TaskHeader tasks={tasks} />
+                <TaskHeader  category={category} tasks ={tasks} />
                 <TasksList tasks={tasks} onUpdateTask={this.updateTask.bind(this)}/>
                 <Modal
-                    visible={showAddTaskModal}
+                    visible={showAddTaskModal} 
                     transparent={true}
                     animationType={'slide'}
                     onRequestClose={this.closeAddTaskModal.bind(this)}>
@@ -63,6 +72,7 @@ export default class Tasks extends Component {
                     />
                 </Modal>
                 <AddTaskButton openAddTaskModal={this.openAddTaskModal.bind(this)}/>
+                
             </View>
         )
     }
